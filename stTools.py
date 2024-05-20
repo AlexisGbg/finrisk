@@ -52,12 +52,21 @@ def get_stock_demo_data(no_stocks: int) -> list:
 def click_button_sim() -> None:
     st.session_state["run_simulation"] = True
     st.session_state["run_simulation_check"] = True
+    st.session_state["load_default_page"] = False
 
+def click_button_sniff() -> None:
+    st.session_state["load_portfolio"] = False
+    st.session_state["load_portfolio_check"] = False
+    st.session_state["run_simulation"] = False
+    st.session_state["run_simulation_check"] = False
+    st.session_state["load_sniff_page"] = True
+    st.session_state["load_default_page"] = False
 
 def click_button_port() -> None:
     st.session_state["load_portfolio"] = True
     st.session_state["load_portfolio_check"] = True
     st.session_state["run_simulation_check"] = False
+    st.session_state["load_default_page"] = False
 
 
 def preview_stock(
