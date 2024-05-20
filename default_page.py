@@ -14,8 +14,7 @@ def load_page():
             :green[Value at Risk (VaR)] and :green[Conditional Value at Risk (CVaR)] aid in smart risk navigation, 
             keeping your game plan robust. Don't worry, I'll explain these concepts in a bit.
             
-            Build your :green[portfolio] on the sidebar; guidance is provided! Contact me at 
-            [DelinM](https://www.linkedin.com/in/raymond-mu/)
+  
             """
     )
 
