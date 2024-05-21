@@ -10,3 +10,4 @@ class INCOME_STMT_KPI(Enum):
 class BALANCE_SHEET_KPI(Enum):
     TOTAL_DEPT = "Total Debt"
     CASH = "Cash And Cash Equivalents"
+    TOTAL_CAPITALIZATION = "Total Capitalization"
