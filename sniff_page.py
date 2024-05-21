@@ -5,7 +5,10 @@ import pandas as pd
 
 
 def load_page():
-    # KPIs 
+    # KPIs
+    if not "my_portfolio" in st.session_state:
+        st.warning("no stocks loaded! Please go to 'create portfolio' to load stocks")
+        st.stop()
     stocks = st.session_state.my_portfolio.stocks
     if len(stocks) == 0:
         st.warning("no stocks loaded! Please go to 'create portfolio' to load stocks")
