@@ -63,8 +63,7 @@ def load_sidebar() -> None:
     """)
 
     # Add Sniff test tab
-    sniff_tab.title("Predict Key KPIs")
     sniff_tab.button(
-        "Load Revenue",
+        "Load KPIs",
         key="sniff_page_load_revenue",
         on_click=tools.click_button_sniff)
