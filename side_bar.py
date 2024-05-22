@@ -29,15 +29,9 @@ def load_sidebar() -> None:
                                                            on_click=tools.click_button_port)
 
     portfo_tab.markdown("""
-        You can create a portfolio with a maximum of :green[10] investments. 
-        
-        For each investment, please provide details such as the :green[stock name], :green[number of shares], and 
-        :green[purchase date]. 
-        
-        Feel free to stick with the default values or customize them according to your preferences. 
-        
-        To simplify, the purchase price us determined based on the closing price on 
-        the purchase date.
+        You can construct a portfolio with up to 10 investments. For each investment, kindly furnish details including the stock name, number of shares, and purchase date. 
+        You're welcome to adhere to default values or tailor them to your liking.
+        To simplify, the purchase price will be determined based on the closing price on the purchase date.
     """)
 
     # add model tab
