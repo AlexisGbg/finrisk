@@ -42,9 +42,7 @@ def load_sidebar() -> None:
                                                          on_click=tools.click_button_sim)
 
     model_tab.markdown("""
-        Monte Carlo simulation employs random sampling to model a range of possible outcomes. By simulating numerous scenarios, it provides a comprehensive understanding of potential risks and rewards.
-        
-        :green[VaR (Value at Risk)]: VaR functions as a safety net, indicating the maximum potential loss within a confidence level, such as a 95% chance of not losing more than $X. It equips you for worst-case scenarios, with alpha representing the confidence level (e.g., 5% implies 95% confidence).
+        Monte Carlo simulation employs random sampling to model a range of possible outcomes. By simulating numerous scenarios, it provides a comprehensive understanding of potential risks and rewards.:green[VaR (Value at Risk)]: VaR functions as a safety net, indicating the maximum potential loss within a confidence level, such as a 95% chance of not losing more than $X. It equips you for worst-case scenarios, with alpha representing the confidence level (e.g., 5% implies 95% confidence).
 
  :green[Conditional Value at Risk (CVaR)]: CVaR extends beyond VaR, disclosing expected losses beyond the worst-case scenario. It serves as a contingency plan for extreme situations, with alpha denoting the confidence level (e.g., 5% implies 95% confidence).
    :red[Why Should You Care?]: In a video game analogy, VaR resembles your character's maximum damage tolerance, while CVaR acts as your backup plan with health potions. Understanding these concepts, along with Monte Carlo simulation, empowers you to make informed decisions and mitigate losses effectively.
@@ -56,3 +54,4 @@ def load_sidebar() -> None:
         "Load KPIs",
         key="sniff_page_load_revenue",
         on_click=tools.click_button_sniff)
+    
