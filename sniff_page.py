@@ -28,31 +28,38 @@ def load_page():
         st.markdown(stocks[s].ticker.get_info()["longBusinessSummary"])
         st.text(" ")
         st.divider()
-        incomestmt = stocks[s].ticker.incomestmt.loc[is_kpis]
-        balance_sheet = stocks[s].ticker.balance_sheet.loc[bs_kpis]
+        incomestmt = stocks[s].ticker.incomestmt
+        valid_rows = set(incomestmt.index) & {x for x in is_kpis}
+        incomestmt = incomestmt.loc[list(valid_rows)]
+        balance_sheet = stocks[s].ticker.balance_sheet
+        valid_rows = set(balance_sheet.index) & {x for x in bs_kpis}
+        balance_sheet = balance_sheet.loc[list(valid_rows)]
         columns = sorted(list(set(incomestmt.columns) & set(balance_sheet.columns)))
         data = pd.concat([incomestmt[columns], balance_sheet[columns]])
         # Adding ratios
-        data.loc[COMPUTED_KPI.LEVERAGE.value] = (
-            data.loc[INCOME_STMT_KPI.EBITDA.value]
-            / data.loc[BALANCE_SHEET_KPI.TOTAL_DEPT.value]
-        )
-        data.loc[COMPUTED_KPI.ENTERPRISE_MULTIPLE.value] = (
-            data.loc[BALANCE_SHEET_KPI.TOTAL_CAPITALIZATION.value]
-            / data.loc[INCOME_STMT_KPI.EBITDA.value]
-        )
-        data.loc[COMPUTED_KPI.EBITDA_MARGIN.value] = (
-            data.loc[INCOME_STMT_KPI.EBITDA.value]
-            / data.loc[INCOME_STMT_KPI.REVENUE.value]
-        ) * 100
-        data.loc[COMPUTED_KPI.REVENUE_GROWTH.value] = (
-            data.loc[INCOME_STMT_KPI.REVENUE.value].pct_change() * 100
-        )
-        data.loc[COMPUTED_KPI.EBITDA_GROWTH.value] = (
-            data.loc[INCOME_STMT_KPI.EBITDA.value].pct_change() * 100
-        )
-        not_empty_cols = [not all(data[x].isnull()) for x in data.columns]
-        data = data.loc[[x.value for x in ORDERED_KPIS], not_empty_cols]
+        try:
+            data.loc[COMPUTED_KPI.LEVERAGE.value] = (
+                data.loc[INCOME_STMT_KPI.EBITDA.value]
+                / data.loc[BALANCE_SHEET_KPI.TOTAL_DEPT.value]
+            )
+            data.loc[COMPUTED_KPI.ENTERPRISE_MULTIPLE.value] = (
+                data.loc[BALANCE_SHEET_KPI.TOTAL_CAPITALIZATION.value]
+                / data.loc[INCOME_STMT_KPI.EBITDA.value]
+            )
+            data.loc[COMPUTED_KPI.EBITDA_MARGIN.value] = (
+                data.loc[INCOME_STMT_KPI.EBITDA.value]
+                / data.loc[INCOME_STMT_KPI.REVENUE.value]
+            ) * 100
+            data.loc[COMPUTED_KPI.REVENUE_GROWTH.value] = (
+                data.loc[INCOME_STMT_KPI.REVENUE.value].pct_change() * 100
+            )
+            data.loc[COMPUTED_KPI.EBITDA_GROWTH.value] = (
+                data.loc[INCOME_STMT_KPI.EBITDA.value].pct_change() * 100
+            )
+        except KeyError as e:
+            print(f"waning: some rows are missing")
+        not_empty_cols = [not all((data[x].isnull()) | (data[x] == 0)) for x in data.columns]
+        data = data.loc[[x.value for x in ORDERED_KPIS if x.value in data.index], not_empty_cols]
         st.dataframe(data)
 
     st.divider()
