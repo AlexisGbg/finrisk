@@ -23,7 +23,11 @@ def load_page():
     is_kpis = [x.value for x in INCOME_STMT_KPI]
     bs_kpis = [x.value for x in BALANCE_SHEET_KPI]
     for s in stocks:
-        st.header(stocks[s].stock_name)
+        st.header(stocks[s].stock_name + " (" + stocks[s].ticker.get_info()["industry"] + ")")
+        st.text(" ")
+        st.markdown(stocks[s].ticker.get_info()["longBusinessSummary"])
+        st.text(" ")
+        st.divider()
         incomestmt = stocks[s].ticker.incomestmt.loc[is_kpis]
         balance_sheet = stocks[s].ticker.balance_sheet.loc[bs_kpis]
         columns = sorted(list(set(incomestmt.columns) & set(balance_sheet.columns)))
@@ -49,6 +53,7 @@ def load_page():
         )
         st.dataframe(data.loc[[x.value for x in ORDERED_KPIS]])
 
+    st.divider()
     st.subheader("Revenue growth")
     radio_button_revenue_growth = st.radio(
         "Choose growth rate distribution", ("Normal", "Uniform")
