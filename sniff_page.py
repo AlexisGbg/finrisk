@@ -25,8 +25,8 @@ def load_page():
         st.header(stocks[s].stock_name)
         incomestmt = stocks[s].ticker.incomestmt.loc[is_kpis]
         balance_sheet = stocks[s].ticker.balance_sheet.loc[bs_kpis]
-        data = pd.concat([incomestmt, balance_sheet])
-        data = data[[data.columns[i] for i in range(3, -1, -1)]]
+        columns = sorted(list(set(incomestmt.columns) & set(balance_sheet.columns)))
+        data = pd.concat([incomestmt[columns], balance_sheet[columns]])
         # Adding ratios
         data.loc["Leverage"] = (
             data.loc[INCOME_STMT_KPI.EBITDA.value]
