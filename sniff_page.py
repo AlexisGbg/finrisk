@@ -51,7 +51,9 @@ def load_page():
         data.loc[COMPUTED_KPI.EBITDA_GROWTH.value] = (
             data.loc[INCOME_STMT_KPI.EBITDA.value].pct_change() * 100
         )
-        st.dataframe(data.loc[[x.value for x in ORDERED_KPIS]])
+        not_empty_cols = [not all(data[x].isnull()) for x in data.columns]
+        data = data.loc[[x.value for x in ORDERED_KPIS], not_empty_cols]
+        st.dataframe(data)
 
     st.divider()
     st.subheader("Revenue growth")
