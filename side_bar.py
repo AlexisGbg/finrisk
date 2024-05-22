@@ -16,7 +16,7 @@ def load_sidebar() -> None:
         st.session_state["run_simulation"] = False
 
     portfo_tab, model_tab, sniff_tab = st.sidebar.tabs(["📈 Create Portfolio",
-                                             "🐂 Build Risk Model",
+                                             "Build Risk Model",
                                              "Sniff Test"])
 
     # add portfolio tab components
@@ -29,15 +29,9 @@ def load_sidebar() -> None:
                                                            on_click=tools.click_button_port)
 
     portfo_tab.markdown("""
-        You can create a portfolio with a maximum of :green[10] investments. 
-        
-        For each investment, please provide details such as the :green[stock name], :green[number of shares], and 
-        :green[purchase date]. 
-        
-        Feel free to stick with the default values or customize them according to your preferences. 
-        
-        To simplify, the purchase price us determined based on the closing price on 
-        the purchase date.
+        You can construct a portfolio with up to 10 investments. For each investment, kindly furnish details including the stock name, number of shares, and purchase date. 
+        You're welcome to adhere to default values or tailor them to your liking.
+        To simplify, the purchase price will be determined based on the closing price on the purchase date.
     """)
 
     # add model tab
@@ -47,19 +41,13 @@ def load_sidebar() -> None:
                                                          key="main_page_run_simulation",
                                                          on_click=tools.click_button_sim)
 
-    model_tab.markdown("""
-        :green[VaR (Value at Risk)]: Think of VaR as a safety net, indicating the 
-        maximum potential loss within a confidence level, e.g., a 95% chance of not losing 
-        more than $X. It prepares you for worst-case scenarios, with alpha representing the 
-        confidence level (e.g., 5% -> 95% confidence).
+    model_tab.markdown("""  
+     Monte Carlo simulation employs random sampling to model a range of possible outcomes. By simulating numerous scenarios, it provides a comprehensive understanding of potential risks and rewards.
+    :green[VaR (Value at Risk)]: VaR functions as a safety net, indicating the maximum potential loss within a confidence level, such as a 95% chance of not losing more than $X. It equips you for worst-case scenarios, with alpha representing the confidence level (e.g., 5% implies 95% confidence).
 
-        :green[Conditional Value at Risk)]: CVaR goes beyond, revealing expected losses 
-        beyond the worst-case scenario. It's like a backup plan for extreme situations, 
-        with alpha denoting the confidence level (e.g., 5% -> 95% confidence).
-
-        :red[Why Should You Care?]: In a video game analogy, VaR is your character's maximum damage 
-        tolerance, while CVaR is your backup plan with health potions. Understanding these helps you make 
-        smart moves and avoid losses.
+ :green[Conditional Value at Risk (CVaR)]: CVaR extends beyond VaR, disclosing expected losses beyond the worst-case scenario. It serves as a contingency plan for extreme situations, with alpha denoting the confidence level (e.g., 5% implies 95% confidence).
+   :red[Why Should You Care?]: In a video game analogy, VaR resembles your character's maximum damage tolerance, while CVaR acts as your backup plan with health potions. Understanding these concepts, along with Monte Carlo simulation, empowers you to make informed decisions and mitigate losses effectively.
+    
     """)
 
     # Add Sniff test tab
@@ -67,3 +55,4 @@ def load_sidebar() -> None:
         "Load KPIs",
         key="sniff_page_load_revenue",
         on_click=tools.click_button_sniff)
+    

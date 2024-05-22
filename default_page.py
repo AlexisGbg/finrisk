@@ -5,14 +5,10 @@ import stTools as tools
 def load_page():
     st.markdown(
         """
-            Welcome to :green[FinRisk]! Explore this app to assess and simulate 
-            your investment portfolio's risk effortlessly! :green[Risk management] is like 
-            :blue[wearing a helmet while riding a bike]—it shields your money during investments. 
-            It's a strategy set to understand uncertainties in stocks or bonds.
-
-            Imagine your investment journey as a game; knowing rules and setbacks gives you a competitive edge. 
-            :green[Value at Risk (VaR)] and :green[Conditional Value at Risk (CVaR)] aid in smart risk navigation, 
-            keeping your game plan robust. Don't worry, I'll explain these concepts in a bit.
+            Welcome to the SFS FinRisk Modeling Simulator! Dive into this app to seamlessly evaluate and simulate your
+            portfolio's risk. Risk management, akin to protective gear in sports, safeguards your investments against
+            market uncertainties. Treat your investment journey as a strategic game; mastering the rules and anticipating challenges gives you a competitive edge. 
+            Value at Risk (VaR) and Conditional Value at Risk (CVaR) act  as your financial GPS, guiding you through risk navigation and ensuring a resilient investment strategy
             
   
             """
