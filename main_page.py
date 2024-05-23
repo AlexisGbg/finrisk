@@ -14,7 +14,7 @@ st.set_page_config(
 
 tools.remove_white_space()
 
-st.title("SFS Risk Management Modelling")
+st.title("SFS Risk Management Modeling")
 
 comp.load_sidebar()
 if "load_default_page" not in st.session_state:
